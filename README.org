@@ -1,0 +1,59 @@
+Robust Bayesian hand-tracking using Gen.
+
+# Introduction
+
+## Purpose
+
+Template for more advanced projects seeking to leverage Bayesian methods for hand-tracking.
+Demonstration of the utility of Bayesian methods in a real-world problem domain.
+Teaching resource for learners eager to apply probabilistic methods to computer vision.
+Focus is on modularity/interpretability to encourage experimentation in Gen.
+
+Have a better RoI extractor? Plug it in to roi_extractor.py
+Want to write a more advanced localizer? Plug it in to localizer.py
+
+Run it all: docker build && docker run
+API: submit image, clear inference memory
+Returns: hand graph [json]
+
+For javascript bugs, some helpers in js
+Enable vis with --debug flag
+
+## TODO
+- [ ] Visualization architecture I
+  - [ ] Inference server accepts image via HTTP
+  - [ ] Web interface (started via DEBUG flag in julia, which starts a python web server)
+  - [ ] Image: RoI, segmentation, reticle
+  - [ ] Training: tensorboard (may have to do next step concurrently)
+- [ ] Neural segmentation
+  - [ ] Data collection
+  - [ ] Model preparation
+  - [ ] Training & Debugging
+- [ ] Vague next steps
+  - [ ] Hand model data structure
+  - [ ] Hand mesh transformation
+  - [ ] Hand mesh generation
+  - [ ] GPU depth renderer
+
+## Purpose
+
+# Design
+
+## Main server
+
+## Neural RoI Extractor
+
+Identify a square region localized around the hand.
+
+Inputs: hypothesized pose, depth image, camera metadata
+Outputs: roi bounds, segmentation map (?)
+
+## Amortized pose initializer
+
+Inputs: roi depth image, num samples
+Outputs: [hand graph]
+
+## Pose refinement
+
+Inputs: model, roi depth image
+Outputs: hand graph
