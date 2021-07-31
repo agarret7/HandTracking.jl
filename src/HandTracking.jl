@@ -1,6 +1,5 @@
 module HandTracking
 
-using HTTP
 using JSON
 
 """ Listens to HTTP messages containing observations and adds
@@ -14,6 +13,8 @@ function inference_server(; url::String = "127.0.0.1", port::Integer = 8081)
     end
 end
 
-inference_server()
+# inference_server()
+
+include("app.jl")
 
 end # module

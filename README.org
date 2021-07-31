@@ -1,59 +1,69 @@
-Robust Bayesian hand-tracking using Gen.
+* Robust Bayesian Hand-Tracking using Gen
+  
+** Purpose
 
-# Introduction
+  Template for more advanced projects seeking to leverage Bayesian methods for hand-tracking.
+  Demonstration of the utility of Bayesian methods in a real-world problem domain.
+  Teaching resource for learners eager to apply probabilistic methods to computer vision.
+  Focus is on modularity/interpretability to encourage experimentation in Gen.
 
-## Purpose
+  Have a better RoI extractor? Plug it in to roi_extractor.py
+  Want to write a more advanced localizer? Plug it in to localizer.py
 
-Template for more advanced projects seeking to leverage Bayesian methods for hand-tracking.
-Demonstration of the utility of Bayesian methods in a real-world problem domain.
-Teaching resource for learners eager to apply probabilistic methods to computer vision.
-Focus is on modularity/interpretability to encourage experimentation in Gen.
+  Run it all: docker build && docker run
+  API: submit image, clear inference memory
+  Returns: hand graph [json]
 
-Have a better RoI extractor? Plug it in to roi_extractor.py
-Want to write a more advanced localizer? Plug it in to localizer.py
+  For javascript bugs, some helpers in js
+  Enable vis with --debug flag
 
-Run it all: docker build && docker run
-API: submit image, clear inference memory
-Returns: hand graph [json]
+** TODO Implement Robust Bayesian Hand-Tracking using Gen [0%]
+   
+*** TODO  neural segmentation [33%] 
+    
+    - [X] camera [2/2]
+      - [X] gen_frame() : Unit -> Image
+      - [X] generate test frames
+    - [X] visualization [5/5]
+      - [X] draw_roi : Image, RoI -> Image
+      - [X] draw_segmentation : Image, SegMap -> Image
+      - [X] render_heatmap : NeuralPixelScoreMap -> Image
+      - [X] embed_subframe : Image, Image -> Image
+      - [X] imshow : Image -> Unit
+    - [ ] neural roi extractor [0/5]
+      - [ ] set up tensorboard (may have to do next step concurrently)
+      - [ ] data collection, conversion [?], verification, and testing
+      - [ ] model implementation
+      - [ ] training procedure
+      - [ ] test performance and iterate
+    - [ ] visualization
+      - [ ] render_hand : RoI, segmentation, reticle
+    - [ ] Vague next steps
+      - [ ] struct Hand
+      - [ ] IDENTITY_HAND
+      - [ ] handToMesh: Hand -> Mesh
+      - [ ] render_hand : Hand -> Image
+    - [ ] Web service
+      - [ ] Inference server accepts image via HTTP
+      - [ ] Web interface (started via DEBUG flag in julia, which starts a python web server)
 
-For javascript bugs, some helpers in js
-Enable vis with --debug flag
+** Design
 
-## TODO
-- [ ] Visualization architecture I
-  - [ ] Inference server accepts image via HTTP
-  - [ ] Web interface (started via DEBUG flag in julia, which starts a python web server)
-  - [ ] Image: RoI, segmentation, reticle
-  - [ ] Training: tensorboard (may have to do next step concurrently)
-- [ ] Neural segmentation
-  - [ ] Data collection
-  - [ ] Model preparation
-  - [ ] Training & Debugging
-- [ ] Vague next steps
-  - [ ] Hand model data structure
-  - [ ] Hand mesh transformation
-  - [ ] Hand mesh generation
-  - [ ] GPU depth renderer
+*** Main server
 
-## Purpose
+*** Neural RoI Extractor
 
-# Design
+   Identify a square region localized around the hand.
 
-## Main server
+   Inputs: hypothesized pose, depth image, camera metadata
+   Outputs: roi bounds, segmentation map (?)
 
-## Neural RoI Extractor
+*** Amortized pose initializer
 
-Identify a square region localized around the hand.
+   Inputs: roi depth image, num samples
+   Outputs: [hand graph]
 
-Inputs: hypothesized pose, depth image, camera metadata
-Outputs: roi bounds, segmentation map (?)
+*** Pose refinement
 
-## Amortized pose initializer
-
-Inputs: roi depth image, num samples
-Outputs: [hand graph]
-
-## Pose refinement
-
-Inputs: model, roi depth image
-Outputs: hand graph
+   Inputs: model, roi depth image
+   Outputs: hand graph
