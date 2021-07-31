@@ -17,35 +17,33 @@
   For javascript bugs, some helpers in js
   Enable vis with --debug flag
 
-** TODO Implement Robust Bayesian Hand-Tracking using Gen [0%]
-   
-*** TODO  neural segmentation [33%] 
-    
-    - [X] camera [2/2]
-      - [X] gen_frame() : Unit -> Image
-      - [X] generate test frames
-    - [X] visualization [5/5]
-      - [X] draw_roi : Image, RoI -> Image
-      - [X] draw_segmentation : Image, SegMap -> Image
-      - [X] render_heatmap : NeuralPixelScoreMap -> Image
-      - [X] embed_subframe : Image, Image -> Image
-      - [X] imshow : Image -> Unit
-    - [ ] neural roi extractor [0/5]
-      - [ ] set up tensorboard (may have to do next step concurrently)
-      - [ ] data collection, conversion [?], verification, and testing
-      - [ ] model implementation
-      - [ ] training procedure
-      - [ ] test performance and iterate
-    - [ ] visualization
-      - [ ] render_hand : RoI, segmentation, reticle
-    - [ ] Vague next steps
-      - [ ] struct Hand
-      - [ ] IDENTITY_HAND
-      - [ ] handToMesh: Hand -> Mesh
-      - [ ] render_hand : Hand -> Image
-    - [ ] Web service
-      - [ ] Inference server accepts image via HTTP
-      - [ ] Web interface (started via DEBUG flag in julia, which starts a python web server)
+** TODO Implement Robust Bayesian Hand-Tracking using Gen [33%]
+   - [X] camera [2/2]
+     - [X] gen_frame() : Unit -> Image
+     - [X] generate test frames
+   - [X] visualization [5/5]
+     - [X] draw_roi : Image, RoI -> Image
+     - [X] draw_segmentation : Image, SegMap -> Image
+     - [X] render_heatmap : NeuralPixelScoreMap -> Image
+     - [X] embed_subframe : Image, Image -> Image
+     - [X] imshow : Image -> Unit
+   - [ ] neural roi extractor [0/6]
+     - [ ] set up tensorboard (may have to do next step concurrently)
+     - [ ] data collection, conversion [?], verification, and testing
+     - [ ] model implementation
+     - [ ] training procedure
+     - [ ] test performance and iterate
+     - [ ] roi extractor code
+   - [ ] visualization
+     - [ ] render_hand : RoI, segmentation, reticle
+   - [ ] Vague next steps
+     - [ ] struct Hand
+     - [ ] IDENTITY_HAND
+     - [ ] handToMesh: Hand -> Mesh
+     - [ ] render_hand : Hand -> Image
+   - [ ] Web service
+     - [ ] Inference server accepts image via HTTP
+     - [ ] Web interface (started via DEBUG flag in julia, which starts a python web server)
 
 ** Design
 
